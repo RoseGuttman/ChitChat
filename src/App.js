@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+  const [messages, setMessages] = useState([])
+  
+  console.log(messages)
   return <main>
 
     <header> 
@@ -10,7 +13,16 @@ function App() {
       
     </header>
     
-    <TextInput onSend={t=> console.log(t)}/>
+    <div className="chat">
+    {messages.map((m,i)=>{
+      return <div key={i} className="messages-wrap">
+          <div className="messages">{m}</div>
+      </div>
+    })}
+    </div>
+
+    <TextInput onSend={t=> 
+      {setMessages([t, ...messages])}}/>
 
   </main>
 }
@@ -20,11 +32,15 @@ function TextInput(props){
   const [text, setText] = useState('')
 
   return <div className="text-input">
-  <input className="input" value={text}
+  <input 
+    className="input" value={text}
     placeholder="chat"
     onChange={e=> setText(e.target.value)} />
-  <button className="button" onClick={()=> {
-    props.onSend(text)
+  <button 
+    disabled={!text}
+    className="button" 
+    onClick={()=> {
+    if(text) props.onSend(text)
     setText('')
   }}>
     <img alt="send" src="https://static.thenounproject.com/png/373675-200.png"/>
