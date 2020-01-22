@@ -7,6 +7,11 @@ function NamePicker(props){
     const[editName, setName] = useState('')
     const [showName, setShowName] = useState(false)
     
+    //useEffect(()=>{
+      //const n = localStorage.getItem('name')
+      //if(n) 
+      // 
+    //}, [])
     
     return <div className="name">
       <input 
