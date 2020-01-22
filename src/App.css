@@ -29,6 +29,7 @@ header{
   background: rgba( 255, 255, 255, 0.5);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 header img {
@@ -48,25 +49,30 @@ header img {
   background: rgba( 255, 255, 255, 0.15);
   color: red;
   bottom:0;
+  border-radius: 5px;
 }
 
 .text-input input{
   width: 85%;
   align-items: center;
+  border-radius: 5px;
 }
 .text-input img{
   height: 11px;
+  border-radius: 5px;
 }
 
 .button:focus{
   outline: 1px solid black;
   position: absolute;
+  border-radius: 5px;
 }
 
 .button:hover{
   background:rgb(153, 145, 255);
   color: white;
   outline: none;
+  border-radius: 5px;
 }
 
 .messages{
@@ -86,6 +92,6 @@ header img {
   overflow-y: scroll;
   margin-bottom: 48px;
   position:absolute;
-  left:0px;
-  width: 100%;
+  right:0px;
+  width: 50%;
 }

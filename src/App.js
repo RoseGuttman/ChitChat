@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import NamePicker from './name'
 
 function App() {
   const [messages, setMessages] = useState([])
@@ -8,9 +9,11 @@ function App() {
   return <main>
 
     <header> 
-      <img alt ="logo" src="https://img.icons8.com/cotton/2x/chat.png"/>
-      ChitChat 
-      
+      <div style={{display:'flex', alignItems:'center'}}>
+        <img alt ="logo" src="https://img.icons8.com/cotton/2x/chat.png"/>
+        ChitChat 
+      </div>
+      <NamePicker onSave={name=>{}} />
     </header>
     
     <div className="chat">
