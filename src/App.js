@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import NamePicker from './name'
+import {db} from './db'
+import { FiSend } from "react-icons/fi"
 
 function App() {
   const [messages, setMessages] = useState([])
-  const [name, setName] = useState()
+  const [name, setName] = useState('')
+
+  useEffect(()=>{
+    db.listen({
+      receive: m=> {
+        setMessages(current=> [m, ...current])
+      },
+    })
+  }, [])
+
+
   console.log(messages)
   return <main>
 
@@ -13,19 +25,21 @@ function App() {
         <img alt ="logo" src="https://img.icons8.com/cotton/2x/chat.png"/>
         ChitChat 
       </div>
-      <NamePicker onSave={setName} />
+      <div className="username"><NamePicker onSave={setName} /></div>
     </header>
     
     <div className="chat">
     {messages.map((m,i)=>{
       return <div key={i} className="messages-wrap">
-          <div className="messages">{m}</div>
+          <div className="messages">{m.text}</div>
       </div>
     })}
     </div>
 
-    <TextInput onSend={t=> 
-      {setMessages([t, ...messages])}}/>
+    <TextInput onSend={(text)=> {
+      db.send({
+        text, name, ts: new Date()
+      })}}/>
 
   </main>
 }
@@ -33,11 +47,12 @@ function App() {
 
 function TextInput(props){
   const [text, setText] = useState('')
-
+  
   return <div className="text-input">
+  <div className="bar">
   <input 
     className="input" value={text}
-    placeholder="chat"
+    placeholder="Chat"
     onChange={e=> setText(e.target.value)} />
   <button 
     disabled={!text}
@@ -46,8 +61,9 @@ function TextInput(props){
     if(text) props.onSend(text)
     setText('')
   }}>
-    <img alt="send" src="https://static.thenounproject.com/png/373675-200.png"/>
+    <FiSend/>
   </button>
+  </div>
   </div>
 }
 
