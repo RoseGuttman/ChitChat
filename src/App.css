@@ -50,7 +50,6 @@ header img {
   background: rgba( 255, 255, 255, 0.15);
   color: red;
   bottom:0;
-  border-radius: 5px;
 }
 
 .text-input input{
@@ -84,7 +83,9 @@ header img {
   display: flex;
   width: 100%;
 }
-.messages{
+.msg{
+  position: relative;
+  margin-top: 10px;
   color: black;
   background: white;
   margin: 5px;
@@ -92,8 +93,10 @@ header img {
   padding: 3px 6px;
   word-break: break-all;
   word-break: break-word;
+  display: inline-block;
 
 }
+
 
 .chat{
   height:calc(100vh - 96px);
@@ -105,7 +108,7 @@ header img {
   position:absolute;
   left:0px;
   width: 50%;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .name{
@@ -148,4 +151,23 @@ header img {
 .namebutton{
   display: flex;
   align-items: center;
+}
+
+.message-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.message-wrap[from="me"]{
+  justify-content: flex-end;
+  right: 0px;
+}
+
+.msg-name{
+  font-size:11px;
+  position:absolute;
+  top:-9px;
+  left:5px;
 }
