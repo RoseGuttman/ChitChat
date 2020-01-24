@@ -21,7 +21,7 @@ function Room(props) {
   const messages = useDB(room)
 
 
-  console.log(messages)
+ // console.log(messages)
   return <main>
 
     <header> 
@@ -32,12 +32,14 @@ function Room(props) {
       <div className="username"><NamePicker onSave={setName} /></div>
     </header>
     
-    <div className="chat">
+    <div className="messages">
     {messages.map((m,i)=>{
       return <div key={i} className="messages-wrap" 
       from={m.name===name?'me':'you'}>
-            <div className="msg">{m.text}</div>
+        <div className="message">
             <div className="msg-name">{m.name}</div>
+            <div className="msg-text">{m.text}</div>
+        </div>
       </div>
     })}
     </div>
@@ -54,19 +56,26 @@ function Room(props) {
 function TextInput(props){
   const [text, setText] = useState('')
   
-  return <div className="text-input">
+  return <div className="text-input-wrap">
   <div className="bar">
   <input 
-    className="input" value={text}
+    className="text-input" value={text}
     placeholder="Chat"
-    onChange={e=> setText(e.target.value)} />
+    onChange={e=> setText(e.target.value)}
+    onKeyPress={e=> {
+      if(e.key==='Enter') {
+        if(text) props.onSend(test)
+        setText('')
+      }
+    }} />
+  
   <button 
-    disabled={!text}
-    className="button" 
     onClick={()=> {
     if(text) props.onSend(text)
     setText('')
-  }}>
+    }}
+    className="button"
+    disabled={!text}>
     <FiSend/>
   </button>
   </div>
