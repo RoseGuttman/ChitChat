@@ -51,31 +51,34 @@ function Room(props) {
     </header>
     
     <div className="messages">
-    {messages.map((m,i)=> <Message key={i} m={m}  name = {name}/>)}
+    {messages.map((m,i)=> <Message key={i} m={m} name={name}/>)}
     </div>
 
     <TextInput 
       showCamera={()=>setShowCamera(true)}
       onSend={(text)=> {
-      db.send({
-        text, name, ts: new Date(), room
-      })}}
-      />
+        db.send({
+          text, name, ts: new Date(), room
+        })
+      }}
+    />
 
   </Div100vh>
 
-    }
+}
 
-    const bucket = 'https://firebasestorage.googleapis.com/v0/b/chitchat2020-f0147.appspot.com/o/'
-    const suffix = '.jpg?alt=media'
+const bucket = 'https://firebasestorage.googleapis.com/v0/b/chitchat2020-f0147.appspot.com/o/'
+const suffix = '.jpg?alt=media'
   
 function Message({m, name}){
   return <div className="messages-wrap" 
   from={m.name===name?'me':'you'}>
     <div className="message">
         <div className="msg-name">{m.name}</div>
-        <div className="msg-text">{m.text}</div>
-        {m.img && <img src={bucket+m.img+suffix} alt="pic" /> }
+        <div className="msg-text">
+          {m.text}
+          {m.img && <img src={bucket+m.img+suffix} alt="pic" /> }
+        </div>
     </div>
   </div>
 }
@@ -92,15 +95,17 @@ function TextInput(props){
     </button>
     
     <input 
-      className="text-input" value={text}
+      className="text-input" 
+      value={text}
       placeholder="Chat"
       onChange={e=> setText(e.target.value)}
       onKeyPress={e=> {
         if(e.key==='Enter') {
           if(text) props.onSend(text)
           setText('')
-      }
-    }} />
+        }
+      }}
+    />
   
     <button 
       onClick={()=> {

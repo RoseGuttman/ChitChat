@@ -41,22 +41,6 @@ header img {
   margin-right: 10px;
 }
 
-
-.text-input{
-  position:absolute;
-  left: 33px;
-  top: 4px;
-  padding-left: 5px;
-  padding-top: 5px;
-  height: 32px;
-  background: rgba( 255, 255, 255, 0.15);
-  bottom:0;
-  border-radius: 5px;
-  font-size: 13px;
-  width: calc(100% - 37px);
-}
-
-
 .text-input-wrap{
   position:absolute;
   bottom:0;
@@ -65,6 +49,25 @@ header img {
   height:4rem;
   border-top:1px solid white;
   background:rgba(255,255,255,0.2);
+}
+
+.text-input{
+  border: 1px white;
+  position:absolute;
+  left: 33px;
+  top: 4px;
+  padding: 0 11px;
+  height: 32px;
+  background: rgba( 255, 255, 255, 0.15);
+  bottom:0;
+  border-radius: 5px;
+  font-size: 13px;
+  width: calc(100% - 37px);
+}
+
+.button:hover{
+  background:rgba(90, 83, 83, 0.1);
+  color: white;
 }
 
 .button{
@@ -82,13 +85,36 @@ header img {
   right:8px
 }
 
-.button:hover{
-  background:rgba(90, 83, 83, 0.1)
+.messages{
+  height:calc(100vh - 8rem);
+  width: 100vw;
+  position: absolute;
+  top: 4rem;
+  left: 0px;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+}
+
+.message-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-shrink:0;
+}
+
+.message-wrap[from="me"]{
+  justify-content: flex-end;
+}
+
+.message{
+  position: relative;
+  margin-top:10px;
+  padding: 0 10px;
 }
 
 .msg-text{
   position: relative;
-  margin-top: 10px;
   color: black;
   background: white;
   margin: 5px;
@@ -97,26 +123,13 @@ header img {
   word-break: break-all;
   word-break: break-word;
   display: inline-block;
-
 }
 
-.message{
-  position: relative;
-  margin-top:10px;
-}
-
-.messages{
-  height:calc(100vh - 8rem);
-  top: 4rem;
-  display:flex;
-  flex-direction: column-reverse;
-  overflow-y: auto;
-  margin-bottom: 48px;
+.msg-name{
+  font-size:11px;
   position:absolute;
-  left:0px;
-  width: 50%;
-  overflow-y: auto;
-  overflow: hidden;
+  top:-9px;
+  left:5px;
 }
 
 .edit-username{
@@ -124,13 +137,7 @@ header img {
   align-items: center;
 }
 
-.namebutton{
-  display:flex;
-  align-items: center;
-}
-
 .name-button{
-  display: flex;
   height:29px;
   margin:0 6px;
   background:transparent;
@@ -161,23 +168,4 @@ header img {
   align-items: center;
   margin-right:12px;
   font-size:1.1rem;
-}
-
-
-.message-wrap{
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-
-}
-
-.message-wrap[from="me"]{
-  justify-content: flex-end;
-}
-
-.msg-name{
-  font-size:11px;
-  position:absolute;
-  top:-9px;
-  left:5px;
 }

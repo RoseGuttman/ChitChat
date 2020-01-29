@@ -8,6 +8,7 @@ const coll = 'messages'
 
 function useDB(room) {
     const [messages, setMessages] = useState([])
+    
     function add(m) {
         setMessages(current => {
             const msgs = [m, ...current]
@@ -18,6 +19,7 @@ function useDB(room) {
     function remove(id) {
         setMessages(current=> current.filter(m=> m.id!==id))
     }
+    
     useEffect(() => {
         store.collection(coll)
         .where('room','==',room)

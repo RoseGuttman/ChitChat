@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react'
-import './App.css'
 import { FiEdit2, FiSave } from "react-icons/fi"
 
 
@@ -11,7 +10,7 @@ function NamePicker(props){
     function save(){
       setTimeout(()=>{
         inputE1.current.focus()
-      }, 50)
+      },50)
       if(name && !showName) {
         props.onSave(name)
         localStorage.setItem('name',name)
@@ -26,12 +25,10 @@ function NamePicker(props){
         setTimeout(()=>{
           save()
         },50)
-      
       }
     }, [])
     
     return <div className="edit-username">
-      <div className="namebutton">
       <input 
         className="name-input"
         style={{display: showName ? 'none' : 'flex'}}
@@ -41,15 +38,16 @@ function NamePicker(props){
         onChange={e=> setName(e.target.value)}
         onKeyPress={e=> {
           if(e.key==='Enter') save()
-        }} />
+        }}
+      />
 
       {showName && <div>{name}</div>}
+      
       <button 
         className="name-button"
         onClick={save}>
         {showName ?<FiEdit2/> : <FiSave/>}
     </button>
-    </div>
     </div>
 }
 
